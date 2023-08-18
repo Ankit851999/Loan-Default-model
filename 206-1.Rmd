@@ -1,0 +1,877 @@
+---
+title: "data1"
+author: "Ankit Kumar"
+date: "2023-04-15"
+output: html_document
+---
+```{r}
+library(tidyverse)
+```
+
+```{r}
+df = read.csv('/Users/ankitkumar/Desktop/Loan_Default.csv')
+names(df) <- tolower(names(df))
+```
+
+```{r}
+glimpse(df)
+colnames(df)
+```
+
+```{r}
+library(Amelia)
+df[df==""] <- NA
+missmap(df)
+```
+
+
+```{r}
+char_col=c()
+for(i in 1:34)
+  {
+    if(is.character(df[,i]))
+      {
+        char_col=c(char_col,i)
+      }
+    }
+num_col=c()
+for(i in 1:34)
+  {
+      if(is.numeric(df[,i]))
+          {
+              num_col=c(num_col,i)
+    
+           }
+  }
+length(num_col)
+length( char_col)
+sort(char_col)
+sort(num_col)
+```
+```{r}
+charcol=c("loan_limit","gender","approv_in_adv","loan_type","loan_purpose","credit_worthiness","open_credit","business_or_commercial","neg_ammortization","interest_only","property_value","construction_type","occupancy_type","secured_by","total_units","co.applicant_credit_type","age","submission_of_application", "region","security_type","region")
+length(charcol)
+numcol=c("id","year","loan_amount","rate_of_interest","interest_rate_spread","upfront_charges","term","lump_sum_payment","income","credit_score","ltv","status","dtir1")
+length(numcol)
+```
+
+
+```{r}
+for (i in char_col)
+  {
+    print(unique(df[,i]))
+  } 
+```
+```{r}
+library(patchwork)
+
+df[sapply(df, is.character)] <- lapply(df[sapply(df, is.character)], 
+                                       as.factor)
+```
+```{r}
+ 
+gg3=df%>%ggplot(aes(df[,3]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg4=df%>%ggplot(aes(df[,4]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg5=df%>%ggplot(aes(df[,5]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg6=df%>%ggplot(aes(df[,6]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg7=df%>%ggplot(aes(df[,7]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg8=df%>%ggplot(aes(df[,8]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg9=df%>%ggplot(aes(df[,9]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg10=df%>%ggplot(aes(df[,10]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg16=df%>%ggplot(aes(df[,16]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg17=df%>%ggplot(aes(df[,17]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg18=df%>%ggplot(aes(df[,18]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg20=df%>%ggplot(aes(df[,20]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg21=df%>%ggplot(aes(df[,21]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg22=df%>%ggplot(aes(df[,22]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg23=df%>%ggplot(aes(df[,23]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg25=df%>%ggplot(aes(df[,25]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg27=df%>%ggplot(aes(df[,27]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg28=df%>%ggplot(aes(df[,28]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg29=df%>%ggplot(aes(df[,29]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg31=df%>%ggplot(aes(df[,31]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+gg32=df%>%ggplot(aes(df[,32]))+geom_bar( fill="steelblue")+theme_bw()+theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1))
+
+(gg3 |gg4| gg5 |gg6)/(gg7 |gg8| gg9 |gg10)
+(gg16 |gg17| gg18 |gg20)/(gg21 |gg22| gg23 |gg25) 
+(gg27 |gg28| gg29 )/(gg31|gg32)
+```
+
+```{r}
+missing.values = df %>%
+    gather(key = "key", value = "val") %>%
+    mutate(is.missing = is.na(val)) %>%
+    group_by(key, is.missing) %>%
+    summarise(num.missing = n()) %>%
+    filter(is.missing==T)%>% select(-is.missing) %>%
+    arrange(desc(num.missing)) 
+missing.values 
+#
+```
+
+
+```{r}
+z=c()
+for(i in 1:14)
+  {
+    for(j in 1:34)
+    {
+      x=colnames(df)
+      y=x[j]
+      
+      if(y==missing.values[i,1])
+      
+          z=c(z,j)
+        }
+      
+      
+    }
+
+z%>%sort()
+
+```
+
+```{r}
+df1=df
+library(imputeTS)
+head(df1[,12])
+x_with_na=df1[,12]
+x_with_imputations= na_kalman(df1[,12])
+df1[,12]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,13])
+x_with_na=df1[,13]
+x_with_imputations= na_kalman(df1[,13])
+df1[,13]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,14])
+x_with_na=df1[,14]
+x_with_imputations= na_kalman(df1[,14])
+df1[,14]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,15])
+x_with_na=df1[,15]
+x_with_imputations= na_kalman(df1[,15])
+df1[,15]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 2.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,19])
+x_with_na=df1[,19]
+x_with_imputations= na_kalman(df1[,19])
+df1[,19]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,24])
+x_with_na=df1[,24]
+x_with_imputations= na_kalman(df1[,24])
+df1[,24]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,30])
+x_with_na=df1[,30]
+x_with_imputations= na_kalman(df1[,30])
+df1[,30]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 2.5,
+size_imputations = 0.5,
+size_truth = 2.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+
+```{r}
+head(df1[,34])
+x_with_na=df1[,34]
+x_with_imputations= na_kalman(df1[,34])
+df1[,34]=x_with_imputations
+mutate(.data = df1,options(max.print = 1))
+ggplot_na_imputations(
+x_with_na,
+x_with_imputations,
+x_with_truth = NULL,
+x_axis_labels = NULL,
+title = "Imputed Values",
+subtitle = "Visualization of missing value replacements",
+xlab = "Time",
+ylab = "Value",
+color_points = "steelblue",
+color_imputations = "indianred",
+color_truth = "seagreen3",
+color_lines = "lightslategray",
+shape_points = 16,
+shape_imputations = 9,
+shape_truth = 16,
+size_points = 1.5,
+size_imputations = 0.5,
+size_truth = 1.5,
+size_lines = 0.5,
+linetype = "solid",
+connect_na = TRUE,
+legend = TRUE,
+legend_size = 5,
+label_known = "known values",
+label_imputations = "imputed values",
+label_truth = "ground truth",
+theme = ggplot2::theme_linedraw())
+```
+
+```{r}
+options(max.print = 1000)
+```
+
+
+
+```{r}
+
+df1$status = as.factor(df1$status) 
+class(df1$status)
+```
+
+
+
+
+```{r}
+df=df1
+df=na.omit(df1)
+summary(df)
+```
+# Visual EDA
+## Correlation matrix
+```{r}
+library(corrplot)
+# Correlation matrix
+loan_cor <- df %>% 
+  select(where(is.numeric)) %>% 
+  drop_na() %>% 
+  cor()
+
+corrplot(loan_cor, method = "circle", addCoef.col = 1, number.cex = 0.7)
+```
+```{r}
+loan_cor <- df %>% 
+  select(c("loan_amount","property_value","income","loan_amount","interest_rate_spread","rate_of_interest","ltv")) %>% 
+  drop_na() %>% 
+  cor()
+
+corrplot(loan_cor, method = "circle", addCoef.col = 1, number.cex = 0.7)
+```
+
+
+
+```{r}
+library(GGally)
+# Plots
+df %>% 
+  select("loan_amount","income","age","property_value","rate_of_interest","interest_rate_spread")%>% 
+  ggpairs(mapping = aes(color = df$status, alpha = 0.5))+theme_minimal()
+```
+```{r}
+library("gridExtra")
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "income", y = "loan_amount") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "loan_amount") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "income", y = "loan_amount") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "income") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+```{r}
+
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "age", y = "property_value") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "rate_of_interest") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = 'interest_rate_spread') +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "property_value", y = "loan_amount") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+```{r}
+
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "age", y = "property_value") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "income", y = "property_value") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = 'property_value') +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "rate_of_interest") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+
+```{r}
+
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "age", y = "interest_rate_spread") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "loan_amount", y = "property_value") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = 'property_value') +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "loan_amount", y = "rate_of_interest") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+```{r}
+
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "income", y = "rate_of_interest") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "rate_of_interest") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "property_value", y = 'rate_of_interest') +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "loan_amount", y = "interest_rate_spread") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+
+```{r}
+
+# Loan amount vs. annual income
+p1 = df %>% filter(income < 500000) %>% 
+ggplot(aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  theme_bw() +
+  labs(x = "income", y = "interest_rate_spread") +
+  theme(plot.background = element_rect(fill = "white"))
+
+# loan to income ratio vs. annual income
+p2 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "age", y = "interest_rate_spread") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# Loan amount vs. loan to income ratio
+p4 <- ggplot(df, aes(x = income, y = loan_amount)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "property_value", y = 'interest_rate_spread') +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+# credit history vs. age
+p3 <- ggplot(df, aes(x = age, y = credit_score)) +
+  geom_point(alpha=0.3, position = "jitter", color = "darkblue") +
+  labs(x = "rate_of_interest", y = "interest_rate_spread") +
+  theme_bw() +
+  theme(plot.background = element_rect(fill = "white"))
+
+grid.arrange(p1, p2, p3, p4, nrow = 2, ncol = 2)
+```
+
+```{r}
+library(DataExplorer)
+# Bar plots
+plot_bar(df, by = "status",
+         ggtheme = theme_bw(),
+         nrow = 4,
+         ncol = 1,
+         parallel = TRUE)
+```
+```{r}
+library(plotly)
+df %>%
+  plot_ly(
+    x = ~df$loan_amount, 
+    y = ~df$rate_of_interest, 
+    color = ~df$status,
+    colors = "Set2",
+    frame = ~df$age, 
+    text = ~df$status, 
+    hoverinfo = "text",
+    type = 'scatter',
+    mode = 'markers'
+  ) %>%
+  plotly::layout(
+    xaxis = list(title = "Loan Amount"),
+    yaxis = list(title = "Loan Interest Rate")
+  )
+```
+
+```{r}
+plot_ly() %>% 
+  add_trace(data = df,
+            y = ~df$rate_of_interest,
+            color = ~df$age,
+            colors = c("#f5ed04","#de1b1d"),
+            type = "box") %>% 
+  plotly::layout(xaxis = list(title = "age"),
+                 yaxis = list(title = "Loan Interest Rate"))
+```
+
+```{r}
+plot_ly() %>% 
+  add_trace(data = df,
+            y = ~df$rate_of_interest,
+            color = ~df$status,
+            colors = "Dark2",
+            type = "box") %>% 
+  plotly::layout(xaxis = list(title = "Historical Default"),
+                 yaxis = list(title = "Loan Interest Rate"))
+```
+# outliers
+```{r}
+boxplot(df)
+```
+```{r}
+
+p1=boxplot(df$loan_amount , horizontal = TRUE, main = "loan_amount")
+p2=boxplot(df$rate_of_interest , horizontal = TRUE, main = "rate_of_interest")
+p3=boxplot(df$interest_rate_spread , horizontal = TRUE, main = "interest_rate_spread")
+p4=boxplot(df$upfront_charges  , horizontal = TRUE, main = "upfront_charges ")
+p5=boxplot(df$term , horizontal = TRUE, main = "term")
+p6=boxplot(df$property_value  , horizontal = TRUE, main = "property_value ")
+p7=boxplot(df$income , horizontal = TRUE, main = "income")
+p8=boxplot(df$credit_score  , horizontal = TRUE, main = "credit_score ")
+p9=boxplot(df$ltv  , horizontal = TRUE, main = "ltv ")
+p10=boxplot(df$dtir1  , horizontal = TRUE, main = "dtir1 ")
+
+```
+```{r}
+data=df
+dim(data)
+for (i in 1:32)
+{
+  if(is.numeric(df[,i]))
+  {
+    quartiles <- quantile(data[,i], probs=c(.25, .75), na.rm = FALSE)
+    IQR <- IQR(data[,i])
+    
+    Lower <- quartiles[1] - 1.5*IQR
+    Upper <- quartiles[2] + 1.5*IQR
+    
+    data_no_outlier <- subset(data, data[,i] > Lower & data[,i]< Upper)
+    data=data_no_outlier
+  }
+}
+
+
+dim(data_no_outlier)
+
+```
+
+```{r}
+library(rsample)
+library(dplyr)
+library(kableExtra)
+set.seed(222)
+df=df[,-2]
+df=df[,-1]
+# Splitting the data into training and testing sets
+df_split <- initial_split(df, prop = 0.75, strata = status)
+train_set <- training(df_split)
+test_set <- testing(df_split)
+
+
+table_split <- data.frame(
+  Dataset = c("Training Set", "Testing Set"),
+  Count = c(count(train_set)[1,], count(test_set)[1,1])
+)
+
+kable(table_split) %>% 
+  kable_styling(bootstrap_options = "bordered",
+                 full_width = FALSE)
+```
+
+# Logistic Regression
+
+```{r}
+logistics_classifier = glm(formula = status ~ .,
+                           family = binomial,
+                           data = train_set)
+```
+```{r}
+
+summary(logistics_classifier)
+```
+# Prediction using Logistics Regressor
+```{r}
+prob_pred = predict(logistics_classifier, type = 'response', newdata = test_set)
+y_pred = ifelse(prob_pred > 0.5, 1, 0)
+```
+# Confusion Matrix
+```{r}
+cm = table(ActualValue=test_set$status, PredictedValue=prob_pred > 0.5)
+cm
+```
+# #Estimating the percentage of performance
+```{r}
+sum(diag(cm))/sum(cm)
+```
+
+
+# Decision Tree
+```{r}
+library(party)
+Tree_Classifer = ctree(status ~ .,
+                       data = train_set)
+Tree_Classifer
+```
+```{r}
+plot(Tree_Classifer)
+```
+# Prediction using the Decision Tree
+```{r}
+pred = predict(Tree_Classifer,newdata = test_set)
+```
+```{r}
+cm = table(ActualValue=test_set$status, PredictedValue=pred)
+cm
+
+```
+# estimating the percentage of performance
+```{r}
+sum(diag(cm))/sum(cm)
+```
+
+# Random Forest
+```{r}
+library(randomForest)
+set.seed(222)
+rf_classifier <- randomForest(status ~ ., data = train_set)
+
+str(rf_classifier)
+```
+```{r}
+attributes(rf_classifier)
+```
+# Confusion Matrix
+```{r}
+rf_pred = predict(rf_classifier,test_set)
+
+library(caret)
+```
+```{r}
+confusionMatrix(rf_pred,test_set$status)
+```
+```{r}
+plot(rf_classifier)
+```
+
+# Determining the most important variable in the forest
+```{r}
+varImpPlot(rf_classifier)
+```
+```{r}
+importance(rf_classifier)
+```
